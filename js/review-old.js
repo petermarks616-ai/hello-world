@@ -1,3 +1,6 @@
+// review-old.js - 复习旧词逻辑
+import { ProgressManager } from './progress.js';
+
 class ReviewOldWords {
     constructor() {
         this.currentIndex = 0;
@@ -10,11 +13,13 @@ class ReviewOldWords {
 
     async init() {
         this.words = this.progressManager.getWordsForReview(10);
+        console.log('复习词汇:', this.words);
+        
         if (this.words.length === 0) {
             this.showNoWordsMessage();
             return;
         }
-        this.loadWord();
+        await this.loadWord();
         this.setupEventListeners();
     }
 
@@ -36,7 +41,8 @@ class ReviewOldWords {
             german: word,
             translation: '示例翻译',
             partOfSpeech: '名词',
-            examples: [{ german: '示例句子', chinese: '翻译' }]
+            examples: [{ german: '示例句子', chinese: '翻译' }],
+            hints: ['错误选项1', '错误选项2', '错误选项3']
         };
     }
 
