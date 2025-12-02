@@ -1,0 +1,165 @@
+/* 统计卡片 */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin: 40px 0;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin: 15px 0;
+}
+
+.stat-label {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* 功能卡片 */
+.function-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.function-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 40px 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.function-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.function-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+/* 学习卡片 */
+.learning-card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 50px;
+    max-width: 800px;
+    margin: 40px auto;
+    box-shadow: var(--shadow-lg);
+}
+
+.german-word {
+    font-size: 4rem;
+    font-weight: 800;
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+}
+
+.translation {
+    font-size: 1.8rem;
+    text-align: center;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    padding: 15px;
+    background: var(--light-bg);
+    border-radius: var(--radius-sm);
+}
+
+.example-sentence {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    margin: 25px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #f6fffd, #f0f9ff);
+    border-radius: var(--radius);
+    border-left: 4px solid var(--accent-color);
+}
+
+/* 选项按钮 */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.option-btn {
+    padding: 25px 20px;
+    border: 2px solid #e2e8f0;
+    border-radius: var(--radius);
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.option-btn:hover {
+    background: var(--light-bg);
+    border-color: var(--primary-color);
+}
+
+.option-btn.correct {
+    background: var(--success-color);
+    color: white;
+    border-color: var(--success-color);
+}
+
+.option-btn.wrong {
+    background: var(--danger-color);
+    color: white;
+    border-color: var(--danger-color);
+}
+
+/* 进度指示器 */
+.progress-container {
+    margin-top: 40px;
+}
+
+.progress-text {
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--text-secondary);
+}
+
+.progress-bar {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    width: 0%;
+    transition: width 0.5s ease;
+}
