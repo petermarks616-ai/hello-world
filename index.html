@@ -1,1 +1,487 @@
-welcome my world
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不背德语单词</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+        
+        /* 页面容器 - 用于切换 */
+        .page-container {
+            width: 100%;
+            max-width: 1200px;
+            position: relative;
+        }
+        
+        /* 第一页样式 */
+        .welcome-page {
+            background-color: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 60px 40px;
+            text-align: center;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+        
+        .welcome-page.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .welcome-page.hidden {
+            transform: translateX(-100%);
+            opacity: 0;
+            display: none;
+        }
+        
+        .welcome-page::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .logo-text {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        
+        .welcome-title {
+            font-size: 42px;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 40px;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+        
+        .language-badge {
+            display: inline-block;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 18px;
+            margin-bottom: 40px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        /* 进入按钮样式 */
+        .enter-btn {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .enter-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+        }
+        
+        .enter-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* 德语元素装饰 */
+        .decorative-text {
+            position: absolute;
+            font-size: 18px;
+            color: rgba(102, 126, 234, 0.1);
+            font-weight: bold;
+            transform: rotate(-30deg);
+            z-index: 0;
+        }
+        
+        .text-1 {
+            top: 20%;
+            left: 10%;
+        }
+        
+        .text-2 {
+            bottom: 30%;
+            right: 10%;
+            transform: rotate(20deg);
+        }
+        
+        /* 第二页样式 */
+        .main-page {
+            background-color: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            transform: translateX(100%);
+            opacity: 0;
+            transition: transform 0.8s ease, opacity 0.8s ease;
+        }
+        
+        .main-page.active {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        
+        .main-page.hidden {
+            display: none;
+        }
+        
+        .header {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            padding: 25px 40px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-title {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .username {
+            font-size: 18px;
+        }
+        
+        .content {
+            padding: 40px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .content-title {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 50px;
+        }
+        
+        .stat-card {
+            background: linear-gradient(to bottom right, #f8f9ff, #eef1ff);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            width: 30%;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .stat-number {
+            font-size: 42px;
+            font-weight: bold;
+            background: linear-gradient(to right, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: #666;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: auto;
+        }
+        
+        .action-btn {
+            background: linear-gradient(to right, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            font-weight: bold;
+            flex: 1;
+            max-width: 250px;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .back-btn {
+            position: absolute;
+            bottom: 30px;
+            left: 40px;
+            background: #f0f2ff;
+            color: #667eea;
+            border: 2px solid #667eea;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .back-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .welcome-title {
+                font-size: 32px;
+            }
+            
+            .enter-btn {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-top: 30px;
+            }
+            
+            .stats-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .stat-card {
+                width: 90%;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <!-- 第一页：欢迎页 -->
+        <div class="welcome-page active" id="welcomePage">
+            <div class="logo">
+                <div class="logo-text">DE</div>
+            </div>
+            
+            <h1 class="welcome-title">欢迎张主人来到不背德语单词</h1>
+            
+            <p class="subtitle">通过真实语境学习德语单词，告别枯燥记忆<br>让德语学习像阅读故事一样自然有趣</p>
+            
+            <div class="language-badge">Deutsch lernen mit Spaß</div>
+            
+            <!-- 装饰性德语文本 -->
+            <div class="decorative-text text-1">Wortschatz</div>
+            <div class="decorative-text text-2">Deutsch</div>
+            
+            <button class="enter-btn" id="enterBtn">进入学习 →</button>
+        </div>
+        
+        <!-- 第二页：主页面 -->
+        <div class="main-page hidden" id="mainPage">
+            <div class="header">
+                <div class="header-title">不背德语单词</div>
+                <div class="user-info">
+                    <div class="user-avatar">张</div>
+                    <div class="username">张主人，欢迎回来</div>
+                </div>
+            </div>
+            
+            <div class="content">
+                <h2 class="content-title">今日学习概览</h2>
+                
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-number">128</div>
+                        <div class="stat-label">已掌握单词</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">今日新词</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-number">28</div>
+                        <div class="stat-label">连续学习天数</div>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button class="action-btn" id="learnBtn">开始今日学习</button>
+                    <button class="action-btn" id="reviewBtn">复习已学单词</button>
+                    <button class="action-btn" id="challengeBtn">挑战测试</button>
+                </div>
+            </div>
+            
+            <button class="back-btn" id="backBtn">← 返回欢迎页</button>
+        </div>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const welcomePage = document.getElementById('welcomePage');
+        const mainPage = document.getElementById('mainPage');
+        const enterBtn = document.getElementById('enterBtn');
+        const backBtn = document.getElementById('backBtn');
+        const learnBtn = document.getElementById('learnBtn');
+        const reviewBtn = document.getElementById('reviewBtn');
+        const challengeBtn = document.getElementById('challengeBtn');
+        
+        // 进入主页面
+        enterBtn.addEventListener('click', function() {
+            // 添加动画效果
+            welcomePage.classList.remove('active');
+            welcomePage.classList.add('hidden');
+            
+            // 短暂延迟后显示主页面
+            setTimeout(() => {
+                mainPage.classList.remove('hidden');
+                mainPage.classList.add('active');
+            }, 300);
+        });
+        
+        // 返回欢迎页
+        backBtn.addEventListener('click', function() {
+            // 添加动画效果
+            mainPage.classList.remove('active');
+            mainPage.classList.add('hidden');
+            
+            // 短暂延迟后显示欢迎页
+            setTimeout(() => {
+                welcomePage.classList.remove('hidden');
+                welcomePage.classList.add('active');
+            }, 300);
+        });
+        
+        // 主页面按钮功能
+        learnBtn.addEventListener('click', function() {
+            alert('开始今日德语单词学习！');
+            // 这里可以跳转到实际的学习页面
+        });
+        
+        reviewBtn.addEventListener('click', function() {
+            alert('进入复习模式，巩固已学单词！');
+            // 这里可以跳转到复习页面
+        });
+        
+        challengeBtn.addEventListener('click', function() {
+            alert('开始挑战测试，检验学习成果！');
+            // 这里可以跳转到测试页面
+        });
+        
+        // 添加一些动态效果
+        document.querySelectorAll('.stat-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
