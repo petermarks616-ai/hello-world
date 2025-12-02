@@ -1,5 +1,5 @@
 // app.js - 主应用控制器
-import { ProgressManager } from 'js/progress.js';
+import { ProgressManager } from './progress.js';
 
 // 添加调试信息
 console.log('🚀 app.js 开始加载');
