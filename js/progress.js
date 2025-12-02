@@ -1,4 +1,5 @@
-class ProgressManager {
+// progress.js - 导出 ProgressManager 类
+export class ProgressManager {
     constructor() {
         this.storageKey = 'german_vocab_progress';
         this.loadProgress();
@@ -40,7 +41,6 @@ class ProgressManager {
         if (!lastDate) {
             this.progress.streakDays = 1;
         } else if (lastDate === today) {
-            // 今天已经学习过
             return;
         } else {
             const last = new Date(lastDate);
@@ -84,8 +84,7 @@ class ProgressManager {
     }
 
     getWordsForReview(count = 10) {
-        // 获取需要复习的单词
         const mastered = this.progress.masteredWords;
-        return mastered.slice(-count * 2).slice(0, count); // 复习最近学习的单词
+        return mastered.slice(-count * 2).slice(0, count);
     }
 }
