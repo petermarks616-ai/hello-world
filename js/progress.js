@@ -1,4 +1,4 @@
-// progress.js - 添加正确的导出语句
+// progress.js - 完整的正确版本
 
 class ProgressManager {
     constructor() {
@@ -90,6 +90,5 @@ class ProgressManager {
     }
 }
 
-// 关键：添加导出语句
+// 关键部分：必须要有导出语句！
 export { ProgressManager };
-// 或者如果需要默认导出：export default ProgressManager;
