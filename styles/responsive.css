@@ -1,0 +1,510 @@
+/* ====== 响应式断点 ====== */
+/* 超小屏幕 (手机竖屏) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-3);
+    }
+    
+    .welcome-card {
+        padding: var(--space-6) var(--space-4);
+        margin: var(--space-4);
+    }
+    
+    .deutsch-text {
+        font-size: 2rem;
+    }
+    
+    .chinese-text {
+        font-size: 1.5rem;
+    }
+    
+    .german-word, .review-german-word {
+        font-size: 2rem;
+    }
+    
+    .function-cards {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: var(--space-4);
+    }
+    
+    .learning-card {
+        padding: var(--space-4);
+    }
+    
+    .review-card {
+        padding: var(--space-4);
+    }
+    
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 小屏幕 (手机横屏) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        padding: 0 var(--space-4);
+    }
+    
+    .deutsch-text {
+        font-size: 2.5rem;
+    }
+    
+    .chinese-text {
+        font-size: 1.75rem;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .function-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .options-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 中等屏幕 (平板) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 90%;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .function-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 大屏幕 (桌面) */
+@media (min-width: 1025px) {
+    .container {
+        max-width: 1200px;
+    }
+    
+    .stats-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .function-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ====== 响应式字体 ====== */
+@media (max-width: 768px) {
+    :root {
+        font-size: 14px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.25rem;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        font-size: 12px;
+    }
+    
+    h1 {
+        font-size: 1.75rem;
+    }
+    
+    h2 {
+        font-size: 1.25rem;
+    }
+    
+    h3 {
+        font-size: 1rem;
+    }
+}
+
+/* ====== 响应式导航 ====== */
+@media (max-width: 768px) {
+    .main-header {
+        padding: var(--space-2) 0;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: var(--space-3);
+        text-align: center;
+    }
+    
+    .user-info {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .main-footer {
+        padding: var(--space-2) 0;
+    }
+    
+    .footer-content {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--space-2);
+    }
+    
+    .footer-btn {
+        flex: 1;
+        min-width: 80px;
+        padding: var(--space-2);
+    }
+}
+
+/* ====== 响应式表格 ====== */
+@media (max-width: 768px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+        margin: 0 calc(-1 * var(--space-4));
+        padding: 0 var(--space-4);
+    }
+}
+
+/* ====== 响应式图片 ====== */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.responsive-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* ====== 响应式网格 ====== */
+.responsive-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+    .responsive-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ====== 响应式工具类 ====== */
+.hidden-mobile {
+    display: none;
+}
+
+.hidden-desktop {
+    display: block;
+}
+
+.visible-mobile {
+    display: block;
+}
+
+.visible-desktop {
+    display: none;
+}
+
+@media (min-width: 769px) {
+    .hidden-mobile {
+        display: block;
+    }
+    
+    .hidden-desktop {
+        display: none;
+    }
+    
+    .visible-mobile {
+        display: none;
+    }
+    
+    .visible-desktop {
+        display: block;
+    }
+}
+
+/* ====== 响应式间距 ====== */
+.responsive-padding {
+    padding: var(--space-4);
+}
+
+@media (max-width: 768px) {
+    .responsive-padding {
+        padding: var(--space-3);
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-padding {
+        padding: var(--space-2);
+    }
+}
+
+/* ====== 响应式边距 ====== */
+.responsive-margin {
+    margin: var(--space-6) 0;
+}
+
+@media (max-width: 768px) {
+    .responsive-margin {
+        margin: var(--space-4) 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .responsive-margin {
+        margin: var(--space-3) 0;
+    }
+}
+
+/* ====== 响应式卡片 ====== */
+.responsive-card {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .responsive-card {
+        max-width: 100%;
+    }
+}
+
+/* ====== 响应式按钮组 ====== */
+.responsive-button-group {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .responsive-button-group {
+        flex-direction: column;
+    }
+    
+    .responsive-button-group button {
+        width: 100%;
+    }
+}
+
+/* ====== 响应式表单 ====== */
+.responsive-form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .responsive-form {
+        max-width: 100%;
+    }
+}
+
+/* ====== 响应式模态框 ====== */
+.responsive-modal {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .responsive-modal {
+        width: 95%;
+        margin: 5% auto;
+    }
+}
+
+/* ====== 设备方向适配 ====== */
+@media (orientation: landscape) and (max-height: 500px) {
+    .welcome-card {
+        padding: var(--space-4) var(--space-8);
+    }
+    
+    .deutsch-text {
+        font-size: 2rem;
+    }
+    
+    .chinese-text {
+        font-size: 1.5rem;
+    }
+    
+    .features {
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-2);
+    }
+    
+    .learning-card {
+        padding: var(--space-4);
+    }
+}
+
+@media (orientation: portrait) {
+    .welcome-card {
+        padding: var(--space-8) var(--space-4);
+    }
+}
+
+/* ====== 暗色模式支持 ====== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --secondary-50: #1e293b;
+        --secondary-100: #334155;
+        --secondary-200: #475569;
+        --secondary-300: #64748b;
+        --secondary-400: #94a3b8;
+        --secondary-500: #cbd5e1;
+        --secondary-600: #e2e8f0;
+        --secondary-700: #f1f5f9;
+        --secondary-800: #f8fafc;
+        --secondary-900: #ffffff;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: var(--secondary-700);
+    }
+    
+    .welcome-card, .stat-card, .function-card, .learning-card, .review-card {
+        background: var(--secondary-50);
+        border-color: var(--secondary-200);
+    }
+    
+    .modal-content {
+        background: var(--secondary-50);
+    }
+    
+    .progress-bar {
+        background: var(--secondary-200);
+    }
+}
+
+/* ====== 高对比度模式支持 ====== */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-500: #0000ff;
+        --success-500: #008000;
+        --warning-500: #ffa500;
+        --danger-500: #ff0000;
+    }
+    
+    * {
+        border-color: currentColor !important;
+    }
+    
+    button, input, select, textarea {
+        border: 2px solid currentColor;
+    }
+}
+
+/* ====== 减少运动偏好 ====== */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .animate-fade-in, .animate-slide-in, .animate-pulse, .animate-bounce, .animate-spin {
+        animation: none;
+    }
+    
+    .hover-lift:hover, .hover-grow:hover {
+        transform: none;
+    }
+}
+
+/* ====== 触摸设备优化 ====== */
+@media (hover: none) and (pointer: coarse) {
+    button, .function-card, .option-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .function-card, .stat-card {
+        padding: var(--space-4);
+    }
+    
+    .options-grid {
+        gap: var(--space-3);
+    }
+    
+    .option-btn {
+        padding: var(--space-4);
+    }
+    
+    .primary-btn, .control-btn {
+        padding: var(--space-4) var(--space-6);
+    }
+}
+
+/* ====== 打印样式 ====== */
+@media print {
+    .main-header, .main-footer, .controls-section, .review-controls {
+        display: none;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+    
+    .welcome-card, .stat-card, .function-card, .learning-card, .review-card {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    
+    a {
+        color: black !important;
+        text-decoration: underline;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+}
