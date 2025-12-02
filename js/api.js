@@ -2,7 +2,7 @@
 
 // 方案1：尝试默认导入（如果 progress.js 使用 export default）
 try {
-    import ProgressManager from './progress.js';
+    import ProgressManager from 'js/progress.js';
     console.log('✅ 默认导入成功');
 } catch (e1) {
     console.log('默认导入失败:', e1.message);
