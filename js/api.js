@@ -10,7 +10,7 @@ try {
 
 // 方案2：尝试命名导入（这是我们期望的方式）
 try {
-    import { ProgressManager } from './progress.js';
+    import { ProgressManager } from 'js/progress.js';
     console.log('✅ 命名导入成功');
 } catch (e2) {
     console.log('命名导入失败:', e2.message);
@@ -18,7 +18,7 @@ try {
 
 // 方案3：动态导入
 try {
-    const progressModule = await import('./progress.js');
+    const progressModule = await import('js/progress.js');
     const ProgressManager = progressModule.ProgressManager || progressModule.default;
     console.log('✅ 动态导入成功');
 } catch (e3) {
