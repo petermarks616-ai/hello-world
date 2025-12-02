@@ -1,8 +1,8 @@
 // AI API 配置
 const AI_CONFIG = {
-    baseURL: 'YOUR_CUSTOM_OPENAI_URL', // 你的自定义URL
-    apiKey: 'YOUR_API_KEY', // 你的API密钥
-    model: 'gpt-3.5-turbo' // 或你使用的模型
+    baseURL: 'https://gemini.beijixingxing.com/v1L', // 你的自定义URL
+    apiKey: 'sk-piAuLNkpYsL0EzpM9EcR0hN8sej9eBIwV3rgeDJzgKi2hoYh', // 你的API密钥
+    model: 'gemini-2.5-pro-preview-06-05[真流-GG公益-50/次]' // 或你使用的模型
 };
 
 // 获取AI生成的词汇
