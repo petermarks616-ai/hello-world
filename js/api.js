@@ -1,5 +1,5 @@
 // api.js - 修复导入和 API 问题
-import CONFIG from 'js/config.js';
+import CONFIG from './config.js';
 
 // 调试信息
 console.log('🔧 api.js 加载成功');
