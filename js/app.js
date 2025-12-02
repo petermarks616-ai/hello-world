@@ -1,4 +1,6 @@
 // app.js - 主应用控制器
+import { ProgressManager } from './progress.js';
+
 class GermanVocabApp {
     constructor() {
         console.log('🎮 GermanVocabApp 初始化');
@@ -52,26 +54,24 @@ class GermanVocabApp {
     }
 
     updateDailyStats() {
-        if (typeof ProgressManager === 'function') {
-            const progressManager = new ProgressManager();
-            progressManager.resetDailyStats();
-            
-            const stats = progressManager.getStats();
-            
-            // 更新概览页面的统计数字
-            const elements = {
-                'masteredCount': stats.mastered,
-                'todayCount': stats.todayLearned,
-                'streakCount': stats.streak
-            };
-            
-            Object.keys(elements).forEach(key => {
-                const element = document.getElementById(key);
-                if (element) {
-                    this.animateCounter(element, elements[key]);
-                }
-            });
-        }
+        const progressManager = new ProgressManager();
+        progressManager.resetDailyStats();
+        
+        const stats = progressManager.getStats();
+        
+        // 更新概览页面的统计数字
+        const elements = {
+            'masteredCount': stats.mastered,
+            'todayCount': stats.todayLearned,
+            'streakCount': stats.streak
+        };
+        
+        Object.keys(elements).forEach(key => {
+            const element = document.getElementById(key);
+            if (element) {
+                this.animateCounter(element, elements[key]);
+            }
+        });
     }
 
     animateCounter(element, target) {
