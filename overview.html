@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不背德语单词 - 学习概览</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="overview-page">
+    <!-- 导航栏 -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book-open"></i>
+                    <h1>不背德语单词</h1>
+                </div>
+                <div class="user-info">
+                    <span class="username">
+                        <i class="fas fa-user"></i>
+                        学习者
+                    </span>
+                    <button class="icon-btn" id="settingsBtn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 页面标题 -->
+        <div class="page-header">
+            <h2 class="page-title">
+                <i class="fas fa-chart-bar"></i>
+                今日学习概览
+            </h2>
+            <div class="date-display">
+                <i class="fas fa-calendar-alt"></i>
+                <span id="currentDate">正在加载日期...</span>
+            </div>
+        </div>
+
+        <!-- 统计卡片 -->
+        <section class="stats-section">
+            <h3 class="section-title">
+                <i class="fas fa-tachometer-alt"></i>
+                学习进度统计
+            </h3>
+            <div class="stats-container">
+                <div class="stat-card stat-card-1">
+                    <div class="stat-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h4 class="stat-title">已掌握单词</h4>
+                        <div class="stat-number" id="masteredCount">0</div>
+                        <p class="stat-desc">熟练记忆的词汇</p>
+                    </div>
+                    <div class="stat-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="masteredProgress"></div>
+                        </div>
+                        <span class="progress-text">掌握率: <span id="masteredPercent">0%</span></span>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-card-2">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h4 class="stat-title">今日已学新词</h4>
+                        <div class="stat-number" id="todayCount">0</div>
+                        <p class="stat-desc">今日学习进度</p>
+                    </div>
+                    <div class="stat-target">
+                        <span class="target-text">今日目标: 10个</span>
+                        <span class="target-status" id="targetStatus">未开始</span>
+                    </div>
+                </div>
+
+                <div class="stat-card stat-card-3">
+                    <div class="stat-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h4 class="stat-title">连续学习天数</h4>
+                        <div class="stat-number" id="streakCount">0</div>
+                        <p class="stat-desc">保持学习习惯</p>
+                    </div>
+                    <div class="streak-info">
+                        <div class="streak-days">
+                            <div class="streak-item active"></div>
+                            <div class="streak-item"></div>
+                            <div class="streak-item"></div>
+                            <div class="streak-item"></div>
+                            <div class="streak-item"></div>
+                        </div>
+                        <span class="streak-text" id="streakText">开始你的学习之旅吧！</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 学习功能 -->
+        <section class="functions-section">
+            <h3 class="section-title">
+                <i class="fas fa-play-circle"></i>
+                开始学习
+            </h3>
+            <div class="function-cards">
+                <div class="function-card function-card-1" id="learnNewBtn">
+                    <div class="function-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h4 class="function-title">学习新词</h4>
+                    <p class="function-desc">
+                        发现10个新德语词汇<br>
+                        包含详细解释和例句
+                    </p>
+                    <div class="function-badge">
+                        <span class="badge-text">推荐</span>
+                    </div>
+                    <div class="function-meta">
+                        <span><i class="fas fa-clock"></i> 约15分钟</span>
+                        <span><i class="fas fa-brain"></i> AI智能生成</span>
+                    </div>
+                </div>
+
+                <div class="function-card function-card-2" id="reviewOldBtn">
+                    <div class="function-icon">
+                        <i class="fas fa-redo"></i>
+                    </div>
+                    <h4 class="function-title">复习旧词</h4>
+                    <p class="function-desc">
+                        复习已学词汇<br>
+                        巩固记忆效果
+                    </p>
+                    <div class="function-badge">
+                        <span class="badge-text" id="reviewBadge">0个待复习</span>
+                    </div>
+                    <div class="function-meta">
+                        <span><i class="fas fa-clock"></i> 约10分钟</span>
+                        <span><i class="fas fa-gamepad"></i> 选择测试</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 学习记录 -->
+        <section class="history-section">
+            <h3 class="section-title">
+                <i class="fas fa-history"></i>
+                最近学习记录
+            </h3>
+            <div class="history-container" id="historyContainer">
+                <!-- 动态加载学习记录 -->
+                <div class="empty-history">
+                    <i class="fas fa-book-open"></i>
+                    <p>还没有学习记录</p>
+                    <p class="empty-desc">点击上方卡片开始学习吧！</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部导航 -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <button class="footer-btn active" onclick="window.location.href='overview.html'">
+                    <i class="fas fa-home"></i>
+                    概览
+                </button>
+                <button class="footer-btn" onclick="window.location.href='learn-new.html'">
+                    <i class="fas fa-book"></i>
+                    学习
+                </button>
+                <button class="footer-btn" onclick="window.location.href='review-old.html'">
+                    <i class="fas fa-redo"></i>
+                    复习
+                </button>
+                <button class="footer-btn" id="statsBtn">
+                    <i class="fas fa-chart-line"></i>
+                    统计
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 设置面板 -->
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-content">
+            <h3>设置</h3>
+            <!-- 设置选项 -->
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/utils.js"></script>
+</body>
+</html>
