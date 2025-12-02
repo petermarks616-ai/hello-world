@@ -1,6 +1,6 @@
 // learn-new.js - 学习新词逻辑
-import { generateVocabulary } from './api.js';
-import { ProgressManager } from './progress.js';
+import { generateVocabulary } from 'js/api.js';
+import { ProgressManager } from 'js/progress.js';
 
 class LearnNewWords {
     constructor() {
