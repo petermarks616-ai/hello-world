@@ -1,1 +1,165 @@
+/* 基础样式重置和变量定义 */
+:root {
+    --primary: #667eea;
+    --secondary: #764ba2;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --light: #f9fafb;
+    --dark: #1f2937;
+}
 
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+}
+
+/* 页面切换动画 */
+.page-enter {
+    animation: slideIn 0.5s ease;
+}
+
+.page-exit {
+    animation: slideOut 0.5s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(-100%); opacity: 0; }
+}
+
+/* 卡片样式 */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* 按钮样式 */
+.btn {
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+}
+
+.btn-secondary {
+    background: var(--light);
+    color: var(--dark);
+    border: 2px solid var(--primary);
+}
+
+/* 统计卡片 */
+.stat-card {
+    text-align: center;
+    padding: 20px;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.stat-label {
+    color: var(--dark);
+    opacity: 0.7;
+    font-size: 14px;
+}
+
+/* 学习页面样式 */
+.word-display {
+    text-align: center;
+    padding: 40px;
+}
+
+.german-word {
+    font-size: 48px;
+    color: var(--dark);
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.translation {
+    font-size: 24px;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.example {
+    font-style: italic;
+    color: #666;
+    margin: 20px 0;
+    line-height: 1.6;
+}
+
+/* 复习选项样式 */
+.options-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 30px 0;
+}
+
+.option-btn {
+    padding: 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.option-btn:hover {
+    border-color: var(--primary);
+    background: #f0f2ff;
+}
+
+.option-btn.correct {
+    border-color: var(--success);
+    background: #d1fae5;
+}
+
+.option-btn.incorrect {
+    border-color: var(--danger);
+    background: #fee2e2;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .options-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .german-word {
+        font-size: 36px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
+    }
+}
