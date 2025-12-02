@@ -1,6 +1,6 @@
 // AI API 配置
 const AI_CONFIG = {
-    baseURL: 'https://gemini.beijixingxing.com', // 你的自定义URL
+    baseURL: 'https://gemini.beijixingxing.com/v1', // 你的自定义URL
     apiKey: 'sk-piAuLNkpYsL0EzpM9EcR0hN8sej9eBIwV3rgeDJzgKi2hoYh', // 你的API密钥
     model: 'gemini-2.5-pro-preview-06-05[真流-GG公益-50/次]' // 或你使用的模型
 };
