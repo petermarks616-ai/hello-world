@@ -1,226 +1,285 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>不背德语单词 - 学习新词</title>
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/components.css">
-    <link rel="stylesheet" href="styles/animations.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="learning-page">
-    <!-- 学习页面头部 -->
-    <header class="learning-header">
-        <div class="container">
-            <div class="learning-header-content">
-                <button class="back-btn" onclick="window.location.href='overview.html'">
-                    <i class="fas fa-arrow-left"></i>
-                    返回
-                </button>
-                <div class="learning-title">
-                    <h2>学习新词</h2>
-                    <div class="learning-subtitle">
-                        <i class="fas fa-robot"></i>
-                        AI智能生成内容
-                    </div>
-                </div>
-                <div class="learning-controls">
-                    <button class="icon-btn" id="soundToggle">
-                        <i class="fas fa-volume-up"></i>
-                    </button>
-                    <button class="icon-btn" id="hintToggle">
-                        <i class="fas fa-lightbulb"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
+// learn-new.js - 完整修复版
+import { generateVocabulary } from './api.js';
+import { generateVocabulary } from './progress.js';
 
-    <!-- 进度指示器 -->
-    <div class="progress-indicator">
-        <div class="container">
-            <div class="progress-content">
-                <div class="progress-info">
-                    <span class="progress-text">进度</span>
-                    <span class="progress-count" id="progressCount">1/10</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressFill"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <main class="container">
-        <!-- 单词学习卡片 -->
-        <div class="learning-card" id="learningCard">
-            <!-- 单词部分 -->
-            <div class="word-section">
-                <div class="word-header">
-                    <span class="word-number" id="wordNumber">#1</span>
-                    <span class="difficulty-badge" id="difficultyBadge">初级</span>
-                </div>
-                
-                <div class="word-content">
-                    <h1 class="german-word" id="germanWord">das Haus</h1>
-                    
-                    <div class="word-meta">
-                        <div class="meta-item">
-                            <i class="fas fa-tag"></i>
-                            <span class="meta-label">词性</span>
-                            <span class="meta-value" id="partOfSpeech">名词</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-flag"></i>
-                            <span class="meta-label">级别</span>
-                            <span class="meta-value" id="wordLevel">A1</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-soundcloud"></i>
-                            <span class="meta-label">发音</span>
-                            <button class="pronounce-btn" id="pronounceBtn">
-                                <i class="fas fa-play"></i>
-                                播放
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 翻译部分 -->
-            <div class="translation-section">
-                <h3 class="section-title">
-                    <i class="fas fa-language"></i>
-                    中文翻译
-                </h3>
-                <div class="translation-card">
-                    <div class="translation-content" id="translationContent">
-                        <span class="translation-text">房子</span>
-                        <div class="translation-details">
-                            <span class="pinyin">[fáng zi]</span>
-                            <span class="category">名词</span>
-                        </div>
-                    </div>
-                    <div class="translation-example" id="translationExample">
-                        <p>例：我的房子很大。</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 例句部分 -->
-            <div class="examples-section">
-                <h3 class="section-title">
-                    <i class="fas fa-comment-alt"></i>
-                    例句学习
-                </h3>
-                <div class="examples-container">
-                    <div class="example-card">
-                        <div class="example-header">
-                            <span class="example-type">基本用法</span>
-                            <button class="sound-btn">
-                                <i class="fas fa-volume-up"></i>
-                            </button>
-                        </div>
-                        <div class="example-content">
-                            <p class="german-example" id="germanExample">Das Haus ist sehr schön.</p>
-                            <p class="chinese-example" id="chineseExample">这个房子很漂亮。</p>
-                        </div>
-                        <div class="example-tips">
-                            <i class="fas fa-info-circle"></i>
-                            <span>注意："das" 是德语中的中性冠词</span>
-                        </div>
-                    </div>
-
-                    <div class="example-card">
-                        <div class="example-header">
-                            <span class="example-type">拓展用法</span>
-                            <button class="sound-btn">
-                                <i class="fas fa-volume-up"></i>
-                            </button>
-                        </div>
-                        <div class="example-content">
-                            <p class="german-example" id="germanExample2">Ich wohne in einem großen Haus.</p>
-                            <p class="chinese-example" id="chineseExample2">我住在一个大房子里。</p>
-                        </div>
-                        <div class="example-tips">
-                            <i class="fas fa-lightbulb"></i>
-                            <span>"wohnen" 表示居住，"in" 表示在...里面</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 记忆提示 -->
-            <div class="hint-section" id="hintSection">
-                <h3 class="section-title">
-                    <i class="fas fa-brain"></i>
-                    记忆技巧
-                </h3>
-                <div class="hint-content" id="hintContent">
-                    <p>联想记忆：想象一栋漂亮的房子 (Haus)，德语发音类似"豪斯"</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 控制按钮 -->
-        <div class="controls-section">
-            <div class="controls-container">
-                <button class="control-btn secondary-btn" id="showMoreBtn">
-                    <i class="fas fa-plus-circle"></i>
-                    显示更多例句
-                </button>
-                
-                <button class="control-btn primary-btn" id="nextBtn">
-                    <i class="fas fa-check-circle"></i>
-                    我已记住，学习下一个
-                    <span class="btn-countdown" id="countdown">3</span>
-                </button>
-            </div>
+class LearnNewWords {
+    constructor() {
+        console.log('🔧 LearnNewWords 初始化');
+        this.currentIndex = 0;
+        this.words = [];
+        this.isProcessing = false;
+        this.init();
+    }
+    
+    async init() {
+        console.log('📋 初始化开始');
+        
+        try {
+            // 使用导入的 generateVocabulary 函数
+            this.words = await generateVocabulary('日常德语', 10);
             
-            <div class="controls-tip">
-                <i class="fas fa-keyboard"></i>
-                提示：按 <kbd>空格键</kbd> 或 <kbd>Enter</kbd> 快速进入下一个
-            </div>
-        </div>
-    </main>
-
-    <!-- 完成学习弹窗 -->
-    <div class="completion-modal" id="completionModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <i class="fas fa-trophy"></i>
-                <h3>恭喜完成！</h3>
-            </div>
-            <div class="modal-body">
-                <div class="completion-stats">
-                    <div class="stat-item">
-                        <span class="stat-label">学习完成</span>
-                        <span class="stat-value">10个单词</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">用时</span>
-                        <span class="stat-value" id="completionTime">12分钟</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">掌握率</span>
-                        <span class="stat-value">100%</span>
-                    </div>
+            console.log('✅ 获取到词汇:', this.words.length, '个');
+            console.log('词汇内容:', this.words);
+            
+            // 检查词汇是否有效
+            if (!this.words || this.words.length === 0) {
+                console.error('❌ 没有获取到词汇');
+                this.showError('无法获取词汇数据');
+                return;
+            }
+            
+            // 渲染第一个单词
+            this.renderWord();
+            
+            // 设置事件监听器
+            this.setupEventListeners();
+            
+            // 更新进度条
+            this.updateProgressBar();
+            
+        } catch (error) {
+            console.error('❌ 初始化失败:', error);
+            this.showError('初始化失败: ' + error.message);
+        }
+    }
+    
+    renderWord() {
+        console.log(`🎨 渲染单词 ${this.currentIndex + 1}/${this.words.length}`);
+        
+        if (this.currentIndex >= this.words.length) {
+            console.error('❌ 索引超出范围');
+            return;
+        }
+        
+        const word = this.words[this.currentIndex];
+        
+        // 更新页面元素
+        const germanWord = document.getElementById('germanWord');
+        const partOfSpeech = document.getElementById('partOfSpeech');
+        const translationContent = document.getElementById('translationContent');
+        const germanExample = document.getElementById('germanExample');
+        const chineseExample = document.getElementById('chineseExample');
+        const germanExample2 = document.getElementById('germanExample2');
+        const chineseExample2 = document.getElementById('chineseExample2');
+        const hintContent = document.getElementById('hintContent');
+        const wordNumber = document.getElementById('wordNumber');
+        
+        if (germanWord) germanWord.textContent = word.german || '无数据';
+        if (partOfSpeech) partOfSpeech.textContent = word.partOfSpeech || '名词';
+        
+        if (translationContent) {
+            translationContent.innerHTML = `
+                <span class="translation-text">${word.translation || '无翻译'}</span>
+                <div class="translation-details">
+                    <span class="category">${word.partOfSpeech || '名词'}</span>
                 </div>
-                <div class="completion-actions">
-                    <button class="modal-btn secondary-btn" id="reviewNowBtn">
-                        <i class="fas fa-redo"></i>
-                        立即复习
-                    </button>
-                    <button class="modal-btn primary-btn" id="backToOverviewBtn">
-                        <i class="fas fa-home"></i>
-                        返回概览
+            `;
+        }
+        
+        if (word.examples && word.examples.length > 0) {
+            if (germanExample) germanExample.textContent = word.examples[0].german;
+            if (chineseExample) chineseExample.textContent = word.examples[0].chinese;
+            
+            if (word.examples.length > 1) {
+                if (germanExample2) germanExample2.textContent = word.examples[1].german;
+                if (chineseExample2) chineseExample2.textContent = word.examples[1].chinese;
+            }
+        }
+        
+        if (hintContent) {
+            hintContent.innerHTML = `<p>${word.hint || '暂无提示'}</p>`;
+        }
+        
+        if (wordNumber) {
+            wordNumber.textContent = `#${this.currentIndex + 1}`;
+        }
+        
+        this.updateProgressBar();
+    }
+    
+    setupEventListeners() {
+        console.log('🎮 设置事件监听器');
+        
+        const nextBtn = document.getElementById('nextBtn');
+        if (nextBtn) {
+            // 移除现有监听器（防止重复绑定）
+            nextBtn.replaceWith(nextBtn.cloneNode(true));
+            const newNextBtn = document.getElementById('nextBtn');
+            
+            newNextBtn.addEventListener('click', () => {
+                console.log('🖱️ 下一步按钮被点击');
+                this.handleNextWord();
+            });
+        }
+        
+        // 绑定完成弹窗的按钮
+        this.bindCompletionModalButtons();
+        
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+                e.preventDefault();
+                console.log('⌨️ 键盘快捷键触发');
+                this.handleNextWord();
+            }
+        });
+    }
+    
+    bindCompletionModalButtons() {
+        console.log('🔗 绑定完成弹窗按钮');
+        
+        // 绑定返回概览按钮
+        const backToOverviewBtn = document.getElementById('backToOverviewBtn');
+        if (backToOverviewBtn) {
+            console.log('✅ 找到返回概览按钮');
+            // 移除已有的事件监听器
+            const newBtn = backToOverviewBtn.cloneNode(true);
+            backToOverviewBtn.parentNode.replaceChild(newBtn, backToOverviewBtn);
+            
+            // 添加新的事件监听器
+            document.getElementById('backToOverviewBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('🏠 返回概览');
+                window.location.href = 'overview.html';
+            });
+        }
+        
+        // 绑定立即复习按钮
+        const reviewNowBtn = document.getElementById('reviewNowBtn');
+        if (reviewNowBtn) {
+            console.log('✅ 找到立即复习按钮');
+            // 移除已有的事件监听器
+            const newReviewBtn = reviewNowBtn.cloneNode(true);
+            reviewNowBtn.parentNode.replaceChild(newReviewBtn, reviewNowBtn);
+            
+            // 添加新的事件监听器
+            document.getElementById('reviewNowBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                console.log('🔄 立即复习');
+                window.location.href = 'review-old.html';
+            });
+        }
+    }
+    
+    handleNextWord() {
+        console.log('🔄 处理下一个单词');
+        console.log('当前索引:', this.currentIndex);
+        
+        if (this.isProcessing) {
+            console.log('⏳ 正在处理中，跳过');
+            return;
+        }
+        
+        this.isProcessing = true;
+        
+        // 保存当前单词到进度
+        const currentWord = this.words[this.currentIndex];
+        
+        // 更新进度管理（简化版）
+        this.saveProgress(currentWord.german);
+        
+        // 短暂延迟，让用户看到反馈
+        setTimeout(() => {
+            this.currentIndex++;
+            console.log('新索引:', this.currentIndex);
+            
+            if (this.currentIndex < this.words.length) {
+                this.renderWord();
+            } else {
+                console.log('✅ 完成所有单词学习');
+                this.showCompletionMessage();
+            }
+            
+            this.isProcessing = false;
+        }, 300);
+    }
+    
+    saveProgress(word) {
+        try {
+            const storageKey = 'german_vocab_progress';
+            const saved = localStorage.getItem(storageKey);
+            let progress = saved ? JSON.parse(saved) : {
+                masteredWords: [],
+                todayWords: []
+            };
+            
+            if (!progress.masteredWords.includes(word)) {
+                progress.masteredWords.push(word);
+            }
+            
+            localStorage.setItem(storageKey, JSON.stringify(progress));
+            console.log('💾 保存进度:', word);
+        } catch (error) {
+            console.error('保存进度失败:', error);
+        }
+    }
+    
+    updateProgressBar() {
+        const progress = ((this.currentIndex + 1) / this.words.length) * 100;
+        
+        const progressFill = document.getElementById('progressFill');
+        const progressCount = document.getElementById('progressCount');
+        
+        if (progressFill) {
+            progressFill.style.width = `${progress}%`;
+        }
+        
+        if (progressCount) {
+            progressCount.textContent = `${this.currentIndex + 1}/${this.words.length}`;
+        }
+    }
+    
+    showCompletionMessage() {
+        console.log('🏆 显示完成消息');
+        
+        const modal = document.getElementById('completionModal');
+        if (modal) {
+            modal.style.display = 'flex';
+            
+            // 重新绑定按钮（确保事件有效）
+            this.bindCompletionModalButtons();
+            
+            // 更新完成时间
+            const timeElement = document.getElementById('completionTime');
+            if (timeElement) {
+                // 简单估算：每个单词约30秒
+                const totalMinutes = Math.round(this.words.length * 0.5);
+                timeElement.textContent = `${totalMinutes}分钟`;
+            }
+        }
+    }
+    
+    showError(message) {
+        console.error('❌ 显示错误:', message);
+        
+        const learningCard = document.getElementById('learningCard');
+        if (learningCard) {
+            learningCard.innerHTML = `
+                <div class="error-state">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>出错了</h3>
+                    <p>${message}</p>
+                    <button onclick="location.reload()" class="primary-btn">
+                        重新加载
                     </button>
                 </div>
-            </div>
-        </div>
-    </div>
+            `;
+        }
+    }
+}
 
-     <script type="module" src="js/learn-new.js"></script>
-</body>
-</html>
+// 页面加载后初始化
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('📄 DOM 加载完成');
+    
+    // 检查是否在正确页面
+    if (document.getElementById('learningCard')) {
+        console.log('✅ 在学习页面，开始初始化');
+        
+        // 延迟初始化确保 DOM 完全加载
+        setTimeout(function() {
+            window.learnNewInstance = new LearnNewWords();
+            console.log('🚀 LearnNewWords 实例已创建');
+        }, 100);
+    }
+});
