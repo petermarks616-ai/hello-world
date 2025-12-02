@@ -185,41 +185,43 @@
         </div>
     </main>
 
-    <!-- 完成学习弹窗 -->
-    <div class="completion-modal" id="completionModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <i class="fas fa-trophy"></i>
-                <h3>恭喜完成！</h3>
+<!-- 完成学习弹窗 -->
+<div class="completion-modal" id="completionModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <i class="fas fa-trophy"></i>
+            <h3>恭喜完成！</h3>
+        </div>
+        <div class="modal-body">
+            <div class="completion-stats">
+                <div class="stat-item">
+                    <span class="stat-label">学习完成</span>
+                    <span class="stat-value">10个单词</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">用时</span>
+                    <span class="stat-value" id="completionTime">12分钟</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">掌握率</span>
+                    <span class="stat-value">100%</span>
+                </div>
             </div>
-            <div class="modal-body">
-                <div class="completion-stats">
-                    <div class="stat-item">
-                        <span class="stat-label">学习完成</span>
-                        <span class="stat-value">10个单词</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">用时</span>
-                        <span class="stat-value" id="completionTime">12分钟</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-label">掌握率</span>
-                        <span class="stat-value">100%</span>
-                    </div>
-                </div>
-                <div class="completion-actions">
-                    <button class="modal-btn secondary-btn" id="reviewNowBtn">
-                        <i class="fas fa-redo"></i>
-                        立即复习
-                    </button>
-                    <button class="modal-btn primary-btn" id="backToOverviewBtn">
-                        <i class="fas fa-home"></i>
-                        返回概览
-                    </button>
-                </div>
+            <div class="completion-actions">
+                <!-- 添加 onclick -->
+                <button class="modal-btn secondary-btn" id="reviewNowBtn" onclick="window.location.href='review-old.html'">
+                    <i class="fas fa-redo"></i>
+                    立即复习
+                </button>
+                <!-- 添加 onclick -->
+                <button class="modal-btn primary-btn" id="backToOverviewBtn" onclick="window.location.href='overview.html'">
+                    <i class="fas fa-home"></i>
+                    返回概览
+                </button>
             </div>
         </div>
     </div>
+</div>
 
      <script type="module" src="js/learn-new.js"></script>
 </body>
